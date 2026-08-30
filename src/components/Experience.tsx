@@ -44,7 +44,7 @@ export default function Experience() {
           </h2>
         </div>
 
-        <div className="max-w-4xl mx-auto grid grid-cols-2 lg:grid-cols-1 gap-3 sm:gap-4">
+        <div className="max-w-5xl mx-auto grid grid-cols-2 gap-3 sm:gap-5">
           {experiences.map((exp) => (
             <div
               key={exp.role}
