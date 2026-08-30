@@ -36,24 +36,24 @@ export default function Hero() {
       <div className="relative z-10 max-w-3xl mx-auto px-4 sm:px-6 text-center">
         <div className="inline-flex items-center gap-2 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full border border-border bg-card/50 backdrop-blur-sm mb-6 sm:mb-8">
           <span className="w-2 h-2 rounded-full bg-success animate-pulse" />
-          <span className="text-xs sm:text-sm font-mono text-muted">Available for opportunities</span>
+          <span className="text-sm sm:text-sm font-mono text-muted">Available for opportunities</span>
         </div>
 
-        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold tracking-tight leading-[1.1] mb-4 sm:mb-6">
+        <h1 className="text-[2.5rem] sm:text-4xl md:text-5xl lg:text-7xl font-bold tracking-tight leading-[1.1] mb-4 sm:mb-6">
           <span className="text-foreground">Hi, I&apos;m </span>
           <span className="bg-gradient-to-r from-accent-light via-accent to-accent-dim bg-clip-text text-transparent bg-[length:200%_auto] animate-[gradient-shift_4s_ease_infinite]">
             Houssam Eddine Djaidja
           </span>
         </h1>
 
-        <p className="text-base sm:text-lg md:text-xl text-muted max-w-xl mx-auto mb-8 sm:mb-10 leading-relaxed px-2">
+        <p className="text-lg sm:text-lg md:text-xl text-muted max-w-xl mx-auto mb-8 sm:mb-10 leading-relaxed px-2">
           Software Engineer &amp; Web Developer crafting modern, responsive web applications with a focus on UI/UX and clean code.
         </p>
 
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 w-full max-w-xs sm:max-w-none mx-auto">
+        <div className="flex flex-row items-center justify-center gap-3 sm:gap-4 w-full max-w-md sm:max-w-none mx-auto">
           <a
             href="#projects"
-            className="group w-full sm:w-auto px-6 py-3 sm:px-7 sm:py-3.5 bg-accent hover:bg-accent-dim text-white rounded-xl font-medium text-sm transition-all duration-200 hover:shadow-lg hover:shadow-accent/20 flex items-center justify-center gap-2"
+            className="group flex-1 sm:flex-none sm:w-auto px-6 py-3.5 sm:px-7 sm:py-3.5 bg-accent hover:bg-accent-dim text-white rounded-xl font-medium text-sm transition-all duration-200 hover:shadow-lg hover:shadow-accent/20 flex items-center justify-center gap-2"
           >
             View Projects
             <svg className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -62,7 +62,7 @@ export default function Hero() {
           </a>
           <a
             href="#contact"
-            className="w-full sm:w-auto px-6 py-3 sm:px-7 sm:py-3.5 border border-border hover:border-dim text-foreground rounded-xl font-medium text-sm transition-all duration-200 hover:bg-white/5 text-center"
+            className="flex-1 sm:flex-none sm:w-auto px-6 py-3.5 sm:px-7 sm:py-3.5 border border-border hover:border-dim text-foreground rounded-xl font-medium text-sm transition-all duration-200 hover:bg-white/5 text-center"
           >
             Get in Touch
           </a>
