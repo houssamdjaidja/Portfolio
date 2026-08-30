@@ -33,9 +33,9 @@ const experiences = [
 
 export default function Experience() {
   return (
-    <section id="experience" className="py-16 sm:py-24 lg:py-32 bg-surface">
+    <section id="experience" className="py-14 sm:py-20 lg:py-24 bg-surface">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
-        <div className="text-center mb-12 sm:mb-16">
+        <div className="text-center mb-10 sm:mb-12">
           <span className="inline-block px-3 sm:px-4 py-1.5 rounded-full border border-border bg-card text-xs font-mono text-accent mb-4 tracking-wider uppercase">
             Experience & Education
           </span>
@@ -44,21 +44,21 @@ export default function Experience() {
           </h2>
         </div>
 
-        <div className="max-w-5xl mx-auto grid grid-cols-2 gap-3 sm:gap-5">
+        <div className="max-w-5xl mx-auto grid grid-cols-2 gap-2.5 sm:gap-4">
           {experiences.map((exp) => (
             <div
               key={exp.role}
-              className="exp-card group p-3 sm:p-6 rounded-xl border border-border bg-card hover:border-accent/20 transition-all duration-300"
+              className="exp-card group p-2.5 sm:p-5 rounded-xl border border-border bg-card hover:border-accent/20 transition-all duration-300"
             >
-              <div className="flex flex-col gap-1 mb-2 sm:mb-3">
-                <h3 className="font-semibold text-foreground group-hover:text-accent transition-colors text-sm sm:text-base">
+              <div className="flex flex-col gap-1 mb-2">
+                <h3 className="font-semibold text-foreground group-hover:text-accent transition-colors text-xs sm:text-base">
                   {exp.role}
                 </h3>
                 <span className="text-[10px] sm:text-xs font-mono text-dim">{exp.period}</span>
               </div>
-              <p className="text-xs sm:text-sm text-accent/70 mb-2 font-medium">{exp.company}</p>
-              <p className="text-xs sm:text-sm text-muted leading-relaxed mb-3">{exp.desc}</p>
-              <div className="flex flex-wrap gap-1.5 sm:gap-2">
+              <p className="text-[11px] sm:text-sm text-accent/70 mb-1.5 font-medium">{exp.company}</p>
+              <p className="text-[10px] sm:text-xs text-muted leading-relaxed mb-2">{exp.desc}</p>
+              <div className="flex flex-wrap gap-1.5">
                 {exp.tags.map((t) => (
                   <span key={t} className="px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-md bg-accent/5 border border-accent/10 text-[10px] sm:text-xs font-mono text-accent/80">
                     {t}
