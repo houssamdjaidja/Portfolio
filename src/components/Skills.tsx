@@ -61,8 +61,16 @@ export default function Skills() {
 
       <div
         className="relative"
-        onMouseEnter={() => trackRef.current?.style.setProperty("animation-play-state", "paused")}
-        onMouseLeave={() => trackRef.current?.style.setProperty("animation-play-state", "running")}
+        onPointerEnter={(e) => {
+          if (window.matchMedia("(min-width: 640px)").matches) {
+            trackRef.current?.style.setProperty("animation-play-state", "paused");
+          }
+        }}
+        onPointerLeave={(e) => {
+          if (window.matchMedia("(min-width: 640px)").matches) {
+            trackRef.current?.style.setProperty("animation-play-state", "running");
+          }
+        }}
       >
         <div className="pointer-events-none absolute inset-y-0 left-0 w-24 sm:w-40 bg-gradient-to-r from-surface to-transparent z-10" />
         <div className="pointer-events-none absolute inset-y-0 right-0 w-24 sm:w-40 bg-gradient-to-l from-surface to-transparent z-10" />
