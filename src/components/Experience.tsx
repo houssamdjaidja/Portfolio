@@ -33,9 +33,9 @@ const experiences = [
 
 export default function Experience() {
   return (
-    <section id="experience" className="py-14 sm:py-20 lg:py-24 bg-surface">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6">
-        <div className="text-center mb-10 sm:mb-12">
+    <section id="experience" className="min-h-[100dvh] flex flex-col justify-center bg-surface">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 py-10 sm:py-16 w-full">
+        <div className="text-center mb-8 sm:mb-12">
           <span className="inline-block px-3 sm:px-4 py-1.5 rounded-full border border-border bg-card text-xs font-mono text-accent mb-4 tracking-wider uppercase">
             Experience & Education
           </span>
