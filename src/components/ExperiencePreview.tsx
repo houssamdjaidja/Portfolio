@@ -8,7 +8,7 @@ const highlights = [
 
 export default function ExperiencePreview() {
   return (
-    <section className="py-16 sm:py-24 lg:py-32 bg-surface">
+    <section id="experience" className="py-16 sm:py-24 lg:py-32 bg-surface">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 text-center">
         <span className="inline-block px-3 sm:px-4 py-1.5 rounded-full border border-border bg-card text-xs font-mono text-accent mb-4 tracking-wider uppercase">
           Experience & Education
