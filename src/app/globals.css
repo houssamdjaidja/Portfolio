@@ -126,3 +126,13 @@ body {
 .marquee-track.reverse {
   animation-name: marquee-right;
 }
+
+@keyframes orbit-outer {
+  from { transform: rotateY(0deg) rotateX(24deg); }
+  to { transform: rotateY(360deg) rotateX(24deg); }
+}
+
+@keyframes orbit-inner {
+  from { transform: rotateY(0deg) rotateX(-28deg); }
+  to { transform: rotateY(360deg) rotateX(-28deg); }
+}
