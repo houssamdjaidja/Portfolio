@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { usePathname, useRouter } from "next/navigation";
 
 const navItems = [
   { label: "Home", href: "#home" },
@@ -12,11 +13,19 @@ const navItems = [
 ];
 
 export default function Navbar() {
+  const pathname = usePathname();
+  const router = useRouter();
+  const isHome = pathname === "/";
+
   const [scrolled, setScrolled] = useState(false);
-  const [active, setActive] = useState("Home");
+  const [active, setActive] = useState(isHome ? "Home" : "");
   const [mobileOpen, setMobileOpen] = useState(false);
 
   useEffect(() => {
+    if (!isHome) {
+      setActive("");
+      return;
+    }
     const onScroll = () => {
       setScrolled(window.scrollY > 50);
       const sections = navItems.map((n) => n.href.slice(1));
@@ -31,11 +40,26 @@ export default function Navbar() {
     window.addEventListener("scroll", onScroll);
     onScroll();
     return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+  }, [isHome]);
 
-  const handleClick = (label: string) => {
-    setActive(label);
+  const handleClick = (label: string, href: string, e: React.MouseEvent) => {
+    e.preventDefault();
     setMobileOpen(false);
+
+    const scrollTo = () => {
+      const el = document.getElementById(href.slice(1));
+      if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+      setActive(label);
+    };
+
+    if (isHome) {
+      scrollTo();
+    } else if (href === "#home") {
+      router.push("/");
+    } else {
+      // Go to homepage then scroll to the section after navigation
+      router.push(`/${href}`);
+    }
   };
 
   return (
@@ -47,7 +71,11 @@ export default function Navbar() {
       }`}
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
-        <a href="#home" className="flex items-center gap-2.5 group" onClick={() => handleClick("Home")}>
+        <a
+          href="/#home"
+          onClick={(e) => handleClick("Home", "#home", e)}
+          className="flex items-center gap-2.5 group"
+        >
           <div className="w-9 h-9 rounded-lg bg-accent/10 border border-accent/20 flex items-center justify-center text-accent font-mono text-sm font-bold tracking-tight group-hover:bg-accent/20 transition-colors">
             HD
           </div>
@@ -60,8 +88,8 @@ export default function Navbar() {
           {navItems.map((item) => (
             <a
               key={item.href}
-              href={item.href}
-              onClick={() => handleClick(item.label)}
+              href={`${!isHome && item.href !== "#home" ? "/" : ""}${item.href}`}
+              onClick={(e) => handleClick(item.label, item.href, e)}
               className={`px-3.5 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
                 active === item.label
                   ? "text-accent bg-accent/10"
@@ -93,8 +121,8 @@ export default function Navbar() {
           {navItems.map((item) => (
             <a
               key={item.href}
-              href={item.href}
-              onClick={() => handleClick(item.label)}
+              href={`${!isHome && item.href !== "#home" ? "/" : ""}${item.href}`}
+              onClick={(e) => handleClick(item.label, item.href, e)}
               className={`px-4 py-3 rounded-lg text-sm font-medium transition-all ${
                 active === item.label
                   ? "text-accent bg-accent/10"
