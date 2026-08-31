@@ -73,9 +73,12 @@ export default function Navbar() {
         <div className="hidden md:flex items-center gap-1">
           {navItems.map((item) => {
             const isActive = active === item.label;
-            const className = `px-3.5 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
-              isActive ? "text-accent bg-accent/10" : "text-muted hover:text-foreground hover:bg-white/5"
-            }`;
+            const isButton = item.href.startsWith("/");
+            const className = isButton
+              ? "px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 bg-accent text-white hover:bg-accent-dim hover:shadow-lg hover:shadow-accent/20"
+              : `px-3.5 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
+                  isActive ? "text-accent bg-accent/10" : "text-muted hover:text-foreground hover:bg-white/5"
+                }`;
             if (item.href.startsWith("/")) {
               return (
                 <Link
@@ -120,9 +123,12 @@ export default function Navbar() {
         <div className="px-4 sm:px-6 py-3 flex flex-col gap-0.5">
           {navItems.map((item) => {
             const isActive = active === item.label;
-            const className = `px-4 py-3 rounded-lg text-sm font-medium transition-all ${
-              isActive ? "text-accent bg-accent/10" : "text-muted hover:text-foreground hover:bg-white/5"
-            }`;
+            const isButton = item.href.startsWith("/");
+            const className = isButton
+              ? "px-4 py-3 rounded-lg text-sm font-medium transition-all bg-accent text-white hover:bg-accent-dim hover:shadow-lg hover:shadow-accent/20 text-center"
+              : `px-4 py-3 rounded-lg text-sm font-medium transition-all ${
+                  isActive ? "text-accent bg-accent/10" : "text-muted hover:text-foreground hover:bg-white/5"
+                }`;
             if (item.href.startsWith("/")) {
               return (
                 <Link
