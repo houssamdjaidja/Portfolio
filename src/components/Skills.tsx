@@ -1,28 +1,31 @@
 "use client";
 
+import { useRef } from "react";
+
 const tech = [
-  "TypeScript",
-  "Next.js",
-  "React",
-  "Node.js",
-  "JavaScript",
-  "HTML",
-  "CSS",
-  "Tailwind",
-  "C",
-  "Java",
-  "SQL",
-  "MySQL",
-  "PostgreSQL",
-  "MongoDB",
-  "Docker",
-  "Git",
-  "GitHub",
-  "Figma",
-  "UI/UX",
+  { name: "TypeScript", icon: "TS", color: "#3178c6" },
+  { name: "Next.js", icon: "N", color: "#ffffff" },
+  { name: "React", icon: "⚛", color: "#61dafb" },
+  { name: "Node.js", icon: "⬢", color: "#339933" },
+  { name: "JavaScript", icon: "JS", color: "#f7df1e" },
+  { name: "Tailwind CSS", icon: "~", color: "#38bdf8" },
+  { name: "HTML", icon: "</>", color: "#e34f26" },
+  { name: "CSS", icon: "#", color: "#1572b6" },
+  { name: "C", icon: "C", color: "#a8b9cc" },
+  { name: "Java", icon: "☕", color: "#f89820" },
+  { name: "MySQL", icon: "DB", color: "#4479a1" },
+  { name: "PostgreSQL", icon: "DB", color: "#336791" },
+  { name: "MongoDB", icon: "{}", color: "#47a248" },
+  { name: "Docker", icon: "🐳", color: "#2496ed" },
+  { name: "Git", icon: "</>", color: "#f05032" },
+  { name: "GitHub", icon: "GH", color: "#ffffff" },
+  { name: "Figma", icon: "F", color: "#a259ff" },
 ];
 
 export default function Skills() {
+  const trackRef = useRef<HTMLDivElement>(null);
+  const items = [...tech, ...tech];
+
   return (
     <section id="skills" className="py-16 sm:py-24 lg:py-32 bg-surface overflow-hidden">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
@@ -33,77 +36,40 @@ export default function Skills() {
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight">
             My <span className="text-accent">Tech Stack</span>
           </h2>
+          <p className="text-muted text-sm mt-3">Hover to pause</p>
         </div>
       </div>
 
-      <div className="relative h-[420px] sm:h-[520px] [perspective:1200px]">
-        <div
-          className="absolute left-1/2 top-1/2 w-[300px] h-[300px] sm:w-[420px] sm:h-[420px] rounded-full border border-accent/10 -translate-x-1/2 -translate-y-1/2"
-          style={{
-            background:
-              "radial-gradient(circle at center, rgba(99,102,241,0.08) 0%, transparent 60%)",
-          }}
-        />
-        <div
-          className="absolute left-1/2 top-1/2 w-[160px] h-[160px] sm:w-[220px] sm:h-[220px] rounded-full border border-dashed border-accent/20 -translate-x-1/2 -translate-y-1/2"
-          style={{ transform: "translate(-50%,-50%)" }}
-        />
-        <div
-          className="absolute left-1/2 top-1/2 w-[6px] h-[6px] rounded-full bg-accent -translate-x-1/2 -translate-y-1/2"
-          style={{ boxShadow: "0 0 20px rgba(99,102,241,0.8)" }}
-        />
+      <div
+        className="relative"
+        onMouseEnter={() => trackRef.current?.style.setProperty("animation-play-state", "paused")}
+        onMouseLeave={() => trackRef.current?.style.setProperty("animation-play-state", "running")}
+      >
+        <div className="pointer-events-none absolute inset-y-0 left-0 w-24 sm:w-40 bg-gradient-to-r from-surface to-transparent z-10" />
+        <div className="pointer-events-none absolute inset-y-0 right-0 w-24 sm:w-40 bg-gradient-to-l from-surface to-transparent z-10" />
 
-        <div className="absolute left-1/2 top-1/2 w-0 h-0 [transform-style:preserve-3d] [animation:orbit-outer_28s_linear_infinite]">
-          {tech.slice(0, 10).map((t, i) => (
-            <Chip
-              key={t}
-              label={t}
-              radius={300}
-              angle={i * (360 / 10)}
-              tilt={15}
-              scoped
-            />
+        <div
+          ref={trackRef}
+          className="carousel-track flex gap-4 sm:gap-6 px-4 w-max"
+        >
+          {items.map((t, i) => (
+            <div
+              key={`${t.name}-${i}`}
+              className="group w-[150px] sm:w-[190px] shrink-0 rounded-2xl border border-border bg-card hover:border-accent/30 transition-all duration-300 p-5 sm:p-6 flex flex-col items-center justify-center gap-3 hover:-translate-y-1 hover:shadow-lg hover:shadow-accent/10"
+            >
+              <div
+                className="w-12 h-12 sm:w-14 sm:h-14 rounded-xl flex items-center justify-center font-mono font-bold text-lg sm:text-xl"
+                style={{ backgroundColor: `${t.color}22`, color: t.color, border: `1px solid ${t.color}44` }}
+              >
+                {t.icon}
+              </div>
+              <span className="font-medium text-foreground text-sm sm:text-base text-center whitespace-nowrap">
+                {t.name}
+              </span>
+            </div>
           ))}
-        </div>
-
-        <div className="absolute left-1/2 top-1/2 w-0 h-0 [transform-style:preserve-3d] [animation:orbit-inner_20s_linear_infinite_reverse]">
-          {tech.slice(10).map((t, i) => (
-            <Chip key={t} label={t} radius={190} angle={i * (360 / 9)} tilt={-20} scoped />
-          ))}
-        </div>
-
-        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 text-xs sm:text-sm font-mono text-dim">
-          Hover to slow down
         </div>
       </div>
     </section>
-  );
-}
-
-function Chip({
-  label,
-  radius,
-  angle,
-  tilt,
-  scoped,
-}: {
-  label: string;
-  radius: number;
-  angle: number;
-  tilt: number;
-  scoped: boolean;
-}) {
-  const rad = (angle * Math.PI) / 180;
-  const x = radius * Math.cos(rad);
-  const z = radius * Math.sin(rad);
-  return (
-    <span
-      className="absolute left-0 top-0 whitespace-nowrap px-3 py-1.5 sm:px-4 sm:py-2 rounded-full border border-accent/15 bg-card/80 backdrop-blur-sm text-accent font-mono text-xs sm:text-sm"
-      style={{
-        transform: `translate(-50%,-50%) translateX(${x}px) translateZ(${z}px) rotateY(${tilt}deg)`,
-      }}
-    >
-      {label}
-    </span>
   );
 }
